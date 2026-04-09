@@ -1,0 +1,102 @@
+@host = http://localhost:5068
+@traineeId = AA812DA2-8D48-42A5-82F3-09563D11B04C
+@topicId = 21A2DFFF-C75B-4258-8CEA-101B2042025D
+@assignmentId = 26D43989-DA61-48BE-A269-7A7251B450F9
+@submissionId = E058D5B3-E153-49D8-A7E8-0CB2F03570A2
+
+### Health Check
+GET {{host}}/health
+Accept: application/json
+
+### =========================
+### Trainees
+### =========================
+
+### GET /api/trainees?page=1&pageSize=10&search=Mohammed
+GET {{host}}/api/trainees?page=1&pageSize=10&search=Mohammed
+Accept: application/json
+
+### GET /api/trainees/{id}
+GET {{host}}/api/trainees/{{traineeId}}
+Accept: application/json
+
+### POST /api/trainees
+POST {{host}}/api/trainees
+Content-Type: application/json
+
+{
+  "fullName": "Mohammed Abu-issa",
+  "email": "mohammed@example.com"
+}
+
+### =========================
+### Topics
+### =========================
+
+### GET /api/topics
+GET {{host}}/api/topics
+Accept: application/json
+
+### GET /api/topics/{id}
+GET {{host}}/api/topics/{{topicId}}
+Accept: application/json
+
+### POST /api/topics
+POST {{host}}/api/topics
+Content-Type: application/json
+
+{
+  "title": "C# Basics",
+  "description": "Learn the fundamentals of C#"
+}
+
+### =========================
+### Assignments
+### =========================
+
+### GET /api/topics/{topicId}/assignments
+GET {{host}}/api/topics/{{topicId}}/assignments
+Accept: application/json
+
+### GET /api/topics/{topicId}/assignments/{id}
+GET {{host}}/api/topics/{{topicId}}/assignments/{{assignmentId}}
+Accept: application/json
+
+### POST /api/topics/{topicId}/assignments
+POST {{host}}/api/topics/{{topicId}}/assignments
+Content-Type: application/json
+
+{
+  "title": "Variables and Data Types",
+  "description": "Understand variables in C#",
+  "difficulty": 2,
+  "dutDate": "2026-04-10T12:00:00Z"
+}
+
+### =========================
+### Submissions
+### =========================
+
+### GET /api/submissions?status=Pending&traineeId={{traineeId}}&page=1&pageSize=10
+GET {{host}}/api/submissions?status=Pending&traineeId={{traineeId}}&page=1&pageSize=10
+Accept: application/json
+
+### GET /api/submissions/{id}
+GET {{host}}/api/submissions/{{submissionId}}
+Accept: application/json
+
+### POST /api/submissions
+POST {{host}}/api/submissions
+Content-Type: application/json
+
+{
+  "assignmentId": "{{assignmentId}}",
+  "traineerId": "{{traineeId}}",
+  "notes": "My submission notes"
+}
+
+### POST /api/submissions/{id}/approve
+POST {{host}}/api/submissions/{{submissionId}}/approve
+
+### POST /api/submissions/{id}/reject
+POST {{host}}/api/submissions/{{submissionId}}/reject

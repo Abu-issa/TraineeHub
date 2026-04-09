@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TraineeHub.Web.ViewModels.Trainees.TraineeListItemVm>
+
+@{
+    ViewData["Title"] = "Trainees";
+}
+
+<h1 class="mb-4">Trainees</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">+ Create New Trainee</a>
+</p>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Created At</th>
+            <th>Submission Count</th>
+            <th style="width: 220px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+            @foreach (var trainee in Model)
+            {
+                <tr>
+                    <td>@trainee.FullName</td>
+                    <td>@trainee.Email</td>
+                    <td>@trainee.CreatAt.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@trainee.SubmissionCount</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@trainee.Id" class="btn btn-info btn-sm">Details</a>
+                        <a asp-action="Edit" asp-route-id="@trainee.Id" class="btn btn-warning btn-sm">Edit</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">No trainees found.</td>
+            </tr>
+        }
+    </tbody>
+</table>

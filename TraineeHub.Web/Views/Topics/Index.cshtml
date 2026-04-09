@@ -1,0 +1,35 @@
+﻿@model List<TraineeHub.Web.ViewModels.Topics.TopicListItemVm>
+
+@{
+    ViewData["Title"] = "Topics";
+}
+
+<h1 class="mb-3">Topics</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Topic</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Assignment Count</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var topic in Model)
+        {
+            <tr>
+                <td>@topic.Title</td>
+                <td>@topic.Description</td>
+                <td>@topic.AssignmentCount</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@topic.Id" class="btn btn-info btn-sm">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,81 @@
+﻿@model TraineeHub.Web.ViewModels.Topics.TopicDetailsVm
+
+@{
+    ViewData["Title"] = "Topic Details";
+}
+
+<h1 class="mb-3">Topic Details</h1>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h4 class="card-title">@Model.Title</h4>
+        <p><strong>Description:</strong> @Model.Description</p>
+    </div>
+</div>
+
+<h3>Assignments</h3>
+
+@if (Model.Assignments.Any())
+{
+    <table class="table table-bordered table-striped mb-4">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Difficulty</th>
+                <th>Due Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var assignment in Model.Assignments)
+            {
+                <tr>
+                    <td>@assignment.Title</td>
+                    <td>@assignment.Difficulty</td>
+                    <td>@assignment.DueDate.ToString("yyyy-MM-dd")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No assignments yet.</p>
+}
+
+<hr />
+
+<<h3>Add Assignment</h3>
+
+<form asp-action="AddAssignment" method="post">
+    <input type="hidden" name="TopicTd" value="@Model.Id" />
+
+    <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input name="Title" class="form-control" value="@Model.NewAssignment.Title" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea name="Description" class="form-control">@Model.NewAssignment.Description</textarea>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Difficulty</label>
+        <input name="Difficulty" class="form-control" value="@Model.NewAssignment.Difficulty" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">DutDate</label>
+        <input name="DutDate" class="form-control" type="date"
+               value="@(Model.NewAssignment.DutDate == default ? "" : Model.NewAssignment.DutDate.ToString("yyyy-MM-dd"))" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Assignment</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

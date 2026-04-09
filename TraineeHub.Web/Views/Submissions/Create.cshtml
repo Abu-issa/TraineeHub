@@ -1,0 +1,40 @@
+﻿@model TraineeHub.Web.ViewModels.Submissions.SubmissionCreateVm
+
+@{
+    ViewData["Title"] = "Submit Assignment";
+}
+
+<h1 class="mb-3">Submit Assignment</h1>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+    <div class="mb-3">
+        <label asp-for="TraineerId" class="form-label">Trainee</label>
+        <select asp-for="TraineerId" asp-items="Model.Trainees" class="form-select">
+            <option value="">-- Select Trainee --</option>
+        </select>
+        <span asp-validation-for="TraineerId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="AssignmentId" class="form-label">Assignment</label>
+        <select asp-for="AssignmentId" asp-items="Model.Assignments" class="form-select">
+            <option value="">-- Select Assignment --</option>
+        </select>
+        <span asp-validation-for="AssignmentId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Notes" class="form-label"></label>
+        <textarea asp-for="Notes" class="form-control"></textarea>
+        <span asp-validation-for="Notes" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
