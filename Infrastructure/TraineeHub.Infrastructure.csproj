@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Appliction\TraineeHub.Appliction.csproj" />
+    <ProjectReference Include="..\ClassLibrary1\TraineeHub.ApplictionRMQ.csproj" />
     <ProjectReference Include="..\TraineeHub.Domain\TraineeHub.Domain.csproj" />
   </ItemGroup>
 
@@ -18,7 +19,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="RabbitMQ.Client" Version="7.2.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.7" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.6.0" />
+    <PackageReference Include="SendGrid" Version="9.29.3" />
   </ItemGroup>
 
 </Project>

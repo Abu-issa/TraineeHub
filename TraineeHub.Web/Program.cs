@@ -1,4 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using TraineeHub.ApplictionRMQ;
+using TraineeHub.ApplictionRMQ.Common.Interfaces;
+using TraineeHub.Infrastructure.Email;
+using TraineeHub.Infrastructure.Messaging;
 using TraineeHub.Infrastructure.Persistence;
 
 namespace TraineeHub.Web
@@ -21,6 +25,12 @@ namespace TraineeHub.Web
                 options.Configuration = "localhost:6379";
                 options.InstanceName = "TraineeHub_";
             });
+            builder.Services.AddSingleton<IMessagePublisher, RabbitMqPublisher>();
+            builder.Services.AddHostedService<RabbitMqConsumer>();
+            builder.Services.AddSingleton<IEmailService, EmailService>();
+         
+            builder.Services.AddHostedService<RabbitMqConsumer>();
+
 
             var app = builder.Build();
 

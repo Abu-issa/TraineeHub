@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TraineeHub.ApplictionRMQ.Common.Events;
+using TraineeHub.ApplictionRMQ.Common.Interfaces;
 using TraineeHub.Domain.Entities;
 using TraineeHub.Domain.Enum;
 using TraineeHub.Infrastructure.Persistence;
@@ -11,10 +13,12 @@ namespace TraineeHub.Web.Controllers
     public class SubmissionsController : Controller
     {
         private readonly TraineeHubDbContext _context;
+        private readonly IMessagePublisher _publisher;
 
-        public SubmissionsController(TraineeHubDbContext context)
+        public SubmissionsController(TraineeHubDbContext context,  IMessagePublisher publisher)
         {
             _context = context;
+            _publisher = publisher;
         }
 
         // GET: Submissions
@@ -112,6 +116,14 @@ namespace TraineeHub.Web.Controllers
 
             _context.Submissions.Add(submission);
             _context.SaveChanges();
+
+            _publisher.Publish(new SubmissionCreatedEvent
+            {
+                SubmissionId = submission.Id,
+                TraineeName = _context.Trainees.First(t => t.Id == submission.TraineerId).FullName,
+                Topic = _context.Assignments.First(a => a.Id == submission.AssignmentId).Title
+            });
+
 
             return RedirectToAction(nameof(Index));
         }

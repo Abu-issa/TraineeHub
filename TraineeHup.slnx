@@ -4,7 +4,7 @@
     <File Path="README.md" />
   </Folder>
   <Project Path="Appliction/TraineeHub.Appliction.csproj" Id="69d57f6f-67e4-48be-a3ba-3eb62738ef77" />
-  <Project Path="ConsoleApp1/TraineeHub.ApplictionRMQ.csproj" Id="f12e5933-da35-494f-8f87-f158ae761b15" />
+  <Project Path="ClassLibrary1/TraineeHub.ApplictionRMQ.csproj" Id="ca867c5b-18f5-47cc-95ec-7b9b0f048f87" />
   <Project Path="Infrastructure/TraineeHub.Infrastructure.csproj" Id="0c36b9fc-165e-41ce-82a0-a7083ec3b2de" />
   <Project Path="TraineeHub.Api/TraineeHub.Api.csproj" Id="3d1dd7cd-cbea-4055-a738-8f05d788a071" />
   <Project Path="TraineeHub.Cli/TraineeHub.Cli.csproj" />

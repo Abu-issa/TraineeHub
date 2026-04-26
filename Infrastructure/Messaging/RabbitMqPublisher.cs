@@ -1,1 +1,46 @@
-﻿
+﻿using RabbitMQ.Client;
+using System.Text;
+using System.Text.Json;
+using TraineeHub.ApplictionRMQ.Common.Events;
+using TraineeHub.ApplictionRMQ.Common.Interfaces;
+
+namespace TraineeHub.Infrastructure.Messaging
+{
+    public class RabbitMqPublisher : IMessagePublisher
+    {
+        private readonly ConnectionFactory _factory;
+
+        public RabbitMqPublisher()
+        {
+            _factory = new ConnectionFactory()
+            {
+                HostName = "localhost"
+            };
+        }
+
+        public void Publish(SubmissionCreatedEvent message)
+        {
+            using var connection = _factory.CreateConnection();
+            using var channel = connection.CreateModel();
+
+            // إنشاء Queue (إذا مش موجودة)
+            channel.QueueDeclare(
+                queue: "submission-queue",
+                durable: false,
+                exclusive: false,
+                autoDelete: false,
+                arguments: null);
+
+            // تحويل الرسالة لـ JSON
+            var json = JsonSerializer.Serialize(message);
+            var body = Encoding.UTF8.GetBytes(json);
+
+            // إرسال الرسالة
+            channel.BasicPublish(
+                exchange: "",
+                routingKey: "submission-queue",
+                basicProperties: null,
+                body: body);
+        }
+    }
+}
