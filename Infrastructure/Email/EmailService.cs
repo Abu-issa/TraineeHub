@@ -11,7 +11,7 @@ namespace TraineeHub.Infrastructure.Email
 
         public EmailService(IConfiguration configuration)
         {
-            _apiKey = "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";
+            _apiKey = "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";
         }
 
         public async Task SendEmail(string to, string subject, string body)
