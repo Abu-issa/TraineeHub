@@ -9,7 +9,15 @@
 <p>
     <a asp-action="Create" class="btn btn-primary">+ Create New Trainee</a>
 </p>
+<div class="d-flex gap-2 mb-3">
+    <a asp-action="ExportExcel" class="btn btn-success">
+        ⬇ 📊 Excel
+    </a>
 
+    <a asp-action="ExportCsv" class="btn btn-outline-primary">
+        ⬇ 📄 CSV
+    </a>
+</div>
 <table class="table table-bordered table-striped table-hover">
     <thead class="table-dark">
         <tr>

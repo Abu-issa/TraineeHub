@@ -18,7 +18,7 @@ namespace TraineeHub.Infrastructure.Email
         {
             var client = new SendGridClient(_apiKey);
 
-            var from = new EmailAddress("mohammadabuissa253@gmail.com", "TraineeHub01"); // ✅ verified
+            var from = new EmailAddress("mohammadabuissa253@gmail.com", "TraineeHub01"); 
             var toEmail = new EmailAddress(to);
 
             var msg = MailHelper.CreateSingleEmail(

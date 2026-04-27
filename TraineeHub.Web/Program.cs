@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using TraineeHub.Appliction.nterfaces;
 using TraineeHub.ApplictionRMQ;
 using TraineeHub.ApplictionRMQ.Common.Interfaces;
 using TraineeHub.Infrastructure.Email;
 using TraineeHub.Infrastructure.Messaging;
 using TraineeHub.Infrastructure.Persistence;
+using TraineeHub.Infrastructure.Services;
 
 namespace TraineeHub.Web
 {
@@ -30,6 +32,7 @@ namespace TraineeHub.Web
             builder.Services.AddSingleton<IEmailService, EmailService>();
          
             builder.Services.AddHostedService<RabbitMqConsumer>();
+            builder.Services.AddScoped<IExportService, ExportService>();
 
 
             var app = builder.Build();

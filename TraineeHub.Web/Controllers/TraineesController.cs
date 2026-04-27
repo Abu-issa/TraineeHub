@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TraineeHub.Appliction.nterfaces;
 using TraineeHub.Domain.Entities;
 using TraineeHub.Infrastructure.Persistence;
 using TraineeHub.Web.ViewModels.Trainees;
@@ -9,10 +10,12 @@ namespace TraineeHub.Web.Controllers
     public class TraineesController : Controller
     {
         private readonly TraineeHubDbContext _context;
+        private readonly IExportService _exportService;
 
-        public TraineesController(TraineeHubDbContext context)
+        public TraineesController(TraineeHubDbContext context, IExportService exportService)
         {
             _context = context;
+            _exportService = exportService;
         }
 
         // GET: Trainees
@@ -134,6 +137,41 @@ namespace TraineeHub.Web.Controllers
             _context.SaveChanges();
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult ExportExcel()
+        {
+            var data = _context.Trainees
+                .Select(t => new TraineeListItemVm
+                {Id = t.Id,
+                    FullName = t.FullName,
+                    Email = t.Email,
+                    CreatAt = t.CreatAt,
+                    SubmissionCount = t.Submissions.Count()
+                })
+                .ToList();
+
+            var file = _exportService.ExportToExcel(data, "Trainees");
+
+            return File(file,
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "Trainees.xlsx");
+        }
+        public IActionResult ExportCsv()
+        {
+            var data = _context.Trainees
+                .Select(t => new TraineeListItemVm
+                { Id = t.Id,
+                    FullName = t.FullName,
+                    Email = t.Email,
+                    CreatAt = t.CreatAt,
+                    SubmissionCount = t.Submissions.Count()
+                })
+                .ToList();
+
+            var file = _exportService.ExportToCsv(data);
+
+            return File(file, "text/csv", "Trainees.csv");
         }
     }
 }

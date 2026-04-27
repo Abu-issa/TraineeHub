@@ -25,7 +25,7 @@ namespace TraineeHub.Infrastructure.Messaging
             var factory = new ConnectionFactory()
             {
                 HostName = "localhost",
-                DispatchConsumersAsync = true // 🔥 مهم للأداء
+                DispatchConsumersAsync = true 
             };
 
             var connection = factory.CreateConnection();
@@ -56,7 +56,7 @@ namespace TraineeHub.Infrastructure.Messaging
 
                     Console.WriteLine($"📩 Received Submission: {message.SubmissionId}");
 
-                    // 🔥 HTML Email body
+                   
                     var body = EmailTemplates.SubmissionReceived(
                         message.TraineeName,
                         message.Topic

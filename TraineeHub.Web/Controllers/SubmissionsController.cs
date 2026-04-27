@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TraineeHub.Appliction.nterfaces;
 using TraineeHub.ApplictionRMQ.Common.Events;
 using TraineeHub.ApplictionRMQ.Common.Interfaces;
 using TraineeHub.Domain.Entities;
@@ -14,11 +15,13 @@ namespace TraineeHub.Web.Controllers
     {
         private readonly TraineeHubDbContext _context;
         private readonly IMessagePublisher _publisher;
+        private readonly IExportService _excelExporter;
 
-        public SubmissionsController(TraineeHubDbContext context,  IMessagePublisher publisher)
+        public SubmissionsController(TraineeHubDbContext context, IMessagePublisher publisher, IExportService exportService)
         {
             _context = context;
             _publisher = publisher;
+            _excelExporter = exportService;
         }
 
         // GET: Submissions
@@ -163,5 +166,61 @@ namespace TraineeHub.Web.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        public IActionResult ExportExcel()
+        {
+            var data = _context.Submissions
+                .Include(t => t.Trainee)
+                .Include(t => t.Assignment)
+                .Select(t => new SubmissionExportVm
+                {
+                    TraineeFullName = t.Trainee.FullName,
+
+                    AssignmentTitle = t.Assignment.Title,
+
+                    Notes = t.Notes,
+                    Stauts = t.Stauts,
+                    SubmittedAt = t.SubmittedAt,
+
+
+                    ReviewAction =
+    t.Stauts == SubmissionStatus.Submitted ? "Needs Review" :
+    t.Stauts == SubmissionStatus.Pending ? "Waiting Review" :
+    "Already Reviewed"
+
+
+
+                }).ToList();
+            var file = _excelExporter.ExportToExcel(data, "Submissions");
+            return File(file, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Submissions.xlsx");
+        }
+
+        public IActionResult ExportCsv()
+        {
+            var data = _context.Submissions
+               .Include(t => t.Trainee)
+               .Include(t => t.Assignment)
+               .Select(t => new SubmissionExportVm
+               {
+                   TraineeFullName = t.Trainee.FullName,
+
+                   AssignmentTitle = t.Assignment.Title,
+
+                   Notes = t.Notes,
+                   Stauts = t.Stauts,
+                   SubmittedAt = t.SubmittedAt,
+
+
+                   ReviewAction =
+   t.Stauts == SubmissionStatus.Submitted ? "Needs Review" :
+   t.Stauts == SubmissionStatus.Pending ? "Waiting Review" :
+   "Already Reviewed"
+
+
+
+               }).ToList();
+            var file = _excelExporter.ExportToExcel(data, "Submissions");
+            return File(file, "text/csv", "Submissions.csv");
+        }
+
     }
 }

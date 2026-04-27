@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TraineeHub.Appliction.nterfaces;
 using TraineeHub.Domain.Entities;
 using TraineeHub.Infrastructure.Persistence;
 using TraineeHub.Web.ViewModels.Assignments;
@@ -10,10 +11,11 @@ namespace TraineeHub.Web.Controllers
     public class TopicsController : Controller
     {
         private readonly TraineeHubDbContext _context;
-
-        public TopicsController(TraineeHubDbContext context)
+        private readonly IExportService _exportService;
+        public TopicsController(TraineeHubDbContext context, IExportService exportService)
         {
             _context = context;
+            _exportService = exportService;
         }
 
         // GET: Topics
@@ -142,5 +144,41 @@ namespace TraineeHub.Web.Controllers
 
             return RedirectToAction(nameof(Details), new { id = vm.TopicTd });
         }
+
+        public IActionResult ExportExcel()
+        {
+            var data = _context.Topics
+                .Select(t => new TopicListItemVm
+                {
+                    Id = t.Id,
+                    Title = t.Title,
+                    Description = t.Description,
+                    AssignmentCount = t.Assignments.Count()
+                })
+                .ToList();
+
+            var file = _exportService.ExportToExcel(data, "Topics");
+
+            return File(file,
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "Topics.xlsx");
+        }
+        public IActionResult ExportCsv()
+        {
+            var data = _context.Topics
+                .Select(t => new TopicListItemVm
+                {
+                    Id = t.Id,
+                    Title = t.Title,
+                    Description = t.Description,
+                    AssignmentCount = t.Assignments.Count()
+                })
+                .ToList();
+
+            var file = _exportService.ExportToCsv(data);
+
+            return File(file, "text/csv", "Topics.csv");
+        }
+
     }
 }
