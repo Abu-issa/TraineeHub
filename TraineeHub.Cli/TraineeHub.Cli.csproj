@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Appliction\TraineeHub.Appliction.csproj" />
-    <ProjectReference Include="..\Infrastructure\TraineeHub.Infrastructure.csproj" />
+    <ProjectReference Include="..\TraineeHub.Application\TraineeHub.Application.csproj" />
+    <ProjectReference Include="..\TraineeHub.Infrastructure\TraineeHub.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

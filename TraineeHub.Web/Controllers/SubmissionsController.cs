@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using TraineeHub.Appliction.nterfaces;
-using TraineeHub.ApplictionRMQ.Common.Events;
-using TraineeHub.ApplictionRMQ.Common.Interfaces;
+using TraineeHub.Application.Interfaces;
+using TraineeHub.Messaging.Common.Events;
+using TraineeHub.Messaging.Common.Interfaces;
 using TraineeHub.Domain.Entities;
 using TraineeHub.Domain.Enum;
 using TraineeHub.Infrastructure.Persistence;

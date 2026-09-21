@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using TraineeHub.Appliction.nterfaces;
-using TraineeHub.ApplictionRMQ;
-using TraineeHub.ApplictionRMQ.Common.Interfaces;
+using TraineeHub.Application.Interfaces;
+using TraineeHub.Messaging;
+using TraineeHub.Messaging.Common.Interfaces;
 using TraineeHub.Infrastructure.Email;
 using TraineeHub.Infrastructure.Messaging;
 using TraineeHub.Infrastructure.Persistence;

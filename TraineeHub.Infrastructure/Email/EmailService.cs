@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration;
 using SendGrid;
 using SendGrid.Helpers.Mail;
-using TraineeHub.ApplictionRMQ.Common.Interfaces;
+using TraineeHub.Messaging.Common.Interfaces;
 
 namespace TraineeHub.Infrastructure.Email
 {

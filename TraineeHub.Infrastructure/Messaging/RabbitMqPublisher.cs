@@ -1,8 +1,8 @@
-﻿using RabbitMQ.Client;
+using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
-using TraineeHub.ApplictionRMQ.Common.Events;
-using TraineeHub.ApplictionRMQ.Common.Interfaces;
+using TraineeHub.Messaging.Common.Events;
+using TraineeHub.Messaging.Common.Interfaces;
 
 namespace TraineeHub.Infrastructure.Messaging
 {

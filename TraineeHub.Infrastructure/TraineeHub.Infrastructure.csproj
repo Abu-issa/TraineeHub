@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Appliction\TraineeHub.Appliction.csproj" />
-    <ProjectReference Include="..\ClassLibrary1\TraineeHub.ApplictionRMQ.csproj" />
+    <ProjectReference Include="..\TraineeHub.Application\TraineeHub.Application.csproj" />
+    <ProjectReference Include="..\TraineeHub.Messaging\TraineeHub.Messaging.csproj" />
     <ProjectReference Include="..\TraineeHub.Domain\TraineeHub.Domain.csproj" />
   </ItemGroup>
 

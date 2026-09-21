@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using ClosedXML.Excel;
 using System.Collections.Generic;
 using System.Text;
-using TraineeHub.Appliction.nterfaces;
+using TraineeHub.Application.Interfaces;
 
 namespace TraineeHub.Infrastructure.Services
 {

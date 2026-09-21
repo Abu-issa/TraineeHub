@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using TraineeHub.ApplictionRMQ.Common.Events;
+using TraineeHub.Messaging.Common.Events;
 
-namespace TraineeHub.ApplictionRMQ.Common.Interfaces
+namespace TraineeHub.Messaging.Common.Interfaces
 {
     public interface IMessagePublisher
     {

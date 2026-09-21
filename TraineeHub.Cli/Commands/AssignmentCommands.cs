@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-using Appliction.Services;
+using TraineeHub.Application.Services;
 
 namespace TraineeHub.Cli.Commands
 {

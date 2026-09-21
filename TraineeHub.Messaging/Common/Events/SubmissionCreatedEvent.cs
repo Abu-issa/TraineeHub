@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace TraineeHub.ApplictionRMQ.Common.Events
+namespace TraineeHub.Messaging.Common.Events
 {
     public class SubmissionCreatedEvent
     {

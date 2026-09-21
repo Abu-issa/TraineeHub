@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using TraineeHub.Domain.Entities;
 using TraineeHub.Domain.Intreface;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-namespace Appliction.Services
+namespace TraineeHub.Application.Services
 {
     public class TraineeServices
     {

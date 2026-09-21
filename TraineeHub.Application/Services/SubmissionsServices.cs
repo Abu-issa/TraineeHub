@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 using TraineeHub.Domain.Entities;
 using TraineeHub.Domain.Enum;
 using TraineeHub.Domain.Intreface;
-namespace Appliction.Services
+namespace TraineeHub.Application.Services
 {
   public class SubmissionsServices
     {
