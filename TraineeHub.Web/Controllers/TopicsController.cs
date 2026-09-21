@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TraineeHub.Appliction.nterfaces;
+using TraineeHub.Application.Interfaces;
 using TraineeHub.Domain.Entities;
 using TraineeHub.Infrastructure.Persistence;
 using TraineeHub.Web.ViewModels.Assignments;

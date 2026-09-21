@@ -16,12 +16,12 @@
 	<ItemGroup>
 		
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.5" />
-		<PackageReference Include="Microsoft.OpenApi" Version="2.4.1" />
+		<PackageReference Include="Microsoft.OpenApi" Version="2.12.2" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.7" />
 	</ItemGroup>
 	
 	<ItemGroup>
-		<ProjectReference Include="..\Infrastructure\TraineeHub.Infrastructure.csproj" />
+		<ProjectReference Include="..\TraineeHub.Infrastructure\TraineeHub.Infrastructure.csproj" />
 		<ProjectReference Include="..\TraineeHub.Domain\TraineeHub.Domain.csproj" />
 	</ItemGroup>
 

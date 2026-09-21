@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace TraineeHub.ApplictionRMQ.Common.Interfaces
+namespace TraineeHub.Messaging.Common.Interfaces
 {
     public interface IEmailService
     {

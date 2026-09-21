@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace TraineeHub.Appliction.nterfaces
+namespace TraineeHub.Application.Interfaces
 {
     public interface IExportService
     {

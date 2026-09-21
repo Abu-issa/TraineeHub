@@ -1,4 +1,4 @@
-﻿using Appliction.Services;
+using TraineeHub.Application.Services;
 using Infrastructure.Repositories;
 using TraineeHub.Cli.Commands;
 using TraineeHub.Cli.Infrastructue.DataStore;
